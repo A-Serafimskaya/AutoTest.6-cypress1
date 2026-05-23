@@ -2,7 +2,7 @@ beforeEach(() => {
   cy.visit("/");
 });
 
-describe.skip("login tests", () => {
+describe("login tests", () => {
   it("Should successfully login", () => {
     cy.login("test@test.com", "test");
     cy.contains("Добро пожаловать test@test.com").should("be.visible");
@@ -23,7 +23,7 @@ describe.skip("login tests", () => {
   });
 });
 
-describe.skip("page display tests", () => {
+describe("page display tests", () => {
   it("Should display the main page", () => {
     cy.contains("Books list").should("be.visible");
   });
@@ -33,43 +33,43 @@ describe("favorites section tests", () => {
   it("Should add the book to favorite using the checkbox", () => {
     cy.login("test@test.com", "test");
     cy.addTheBookToFavoriteUsingCheckbox(
-      "1989",
+      "1984",
       "Знаменитая антиутопия, предупреждающая об опасности тоталитаризма",
       "Джордж Оруэлл",
     );
     cy.get("#responsive-navbar-nav h4").click();
-    cy.contains("1989").should("be.visible");
+    cy.contains("1984").should("be.visible");
   });
 
   it("Should add the book to favorite without using the checkbox", () => {
     cy.login("test@test.com", "test");
     cy.addTheBook(
-      "1900",
+      "1984",
       "Знаменитая антиутопия, предупреждающая об опасности тоталитаризма",
       "Джордж Оруэлл",
     );
     cy.contains("Books list").click;
-    cy.contains("1900").within(() => {
+    cy.contains("1984").within(() => {
       cy.get("button").click();
     });
     cy.contains("Favorites").click;
-    cy.contains("1900").should("be.visible");
+    cy.contains("1984").should("be.visible");
   });
 
   it("Should delete the book from the favorites", () => {
     cy.login("test@test.com", "test");
     cy.addTheBookToFavoriteUsingCheckbox(
-      "222",
+      "1954",
       "Знаменитая антиутопия, предупреждающая об опасности тоталитаризма",
       "Джордж Оруэлл",
     );
     cy.get("#responsive-navbar-nav h4").click();
-    cy.contains("222").should("be.visible");
+    cy.contains("1954").should("be.visible");
     cy.contains("Favorites").click();
-    cy.contains("222").within(() => {
+    cy.contains("1954").within(() => {
       cy.get("button").click();
     });
     cy.contains("Favorites").click();
-    cy.contains("222").should("not.be.visible");
+    cy.contains("1954").should("not.exist");
   });
 });

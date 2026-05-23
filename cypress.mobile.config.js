@@ -3,8 +3,8 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   //retries: 2,
   allowCypressEnv: false,
-  viewportWidth: 1366,
-  viewportHeight: 768,
+  viewportWidth: 375,
+  viewportHeight: 667,
 
   e2e: {
     baseUrl: "http://localhost:3000/",
